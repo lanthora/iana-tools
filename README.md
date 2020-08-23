@@ -1,6 +1,10 @@
 # iana-tools
 
 ```bash
+make static
+```
+
+```bash
 wget http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest
 ```
 
