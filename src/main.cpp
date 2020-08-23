@@ -2,8 +2,9 @@
 #include "util.h"
 #include <iostream>
 
+#define STR(s) #s
 #define PARSE(key)                                                             \
-  if (kv[0][0] == '-' && kv[0].substr(1) == #key) {                            \
+  if (kv[0] == STR(-key)) {                                                    \
     key = kv[1];                                                               \
     continue;                                                                  \
   }
