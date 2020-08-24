@@ -4,6 +4,7 @@
 #include <cstring>
 #include <string>
 #include <vector>
+
 bool is_space_or_tabs(const char &c);
 
 bool is_end_with(const std::string &line, const char *model);

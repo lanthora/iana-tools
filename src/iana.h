@@ -32,7 +32,6 @@ struct iana_record {
 
 class iana_analyzer {
   enum struct iana_status { COMMENT, VERSION, SUMMERY, RECORD };
-  friend std::ostream &operator<<(std::ostream &os, iana_status current_status);
 
 public:
   static bool is_comment(std::string line);
