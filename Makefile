@@ -1,4 +1,4 @@
-all: util iana
+all: util iana static publish
 
 static:
 	g++ --static -o ./bin/iana-tools ./src/main.cpp ./src/iana.cpp ./src/util.cpp
