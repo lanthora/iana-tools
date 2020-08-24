@@ -1,14 +1,16 @@
-#ifndef __IANA_H__
-#define __IANA_H__
-
-
-
-#include <fstream>
-#include <istream>
-#include <vector>
 /**
  * 读取iana文件，存储数据结构，根据不同的需求导出不同的文件
  */
+
+#ifndef __IANA_H__
+#define __IANA_H__
+
+#include <fstream>
+#include <istream>
+#include <map>
+#include <ostream>
+#include <vector>
+
 // 保存version信息
 struct iana_version {
   void update(const std::string line);
@@ -23,12 +25,14 @@ struct iana_summary {
 
 // 保存record信息
 struct iana_record {
+  static std::map<std::string, std::string> len_to_prefix;
   void update(const std::string line);
   std::string registry, cc, type, start, value, date, status;
 };
 
 class iana_analyzer {
   enum struct iana_status { COMMENT, VERSION, SUMMERY, RECORD };
+  friend std::ostream &operator<<(std::ostream &os, iana_status current_status);
 
 public:
   static bool is_comment(std::string line);
@@ -40,6 +44,8 @@ public:
   ~iana_analyzer();
   void update_status(const std::string &line);
   void read();
+  void write(const std::string &cc, const std::string &type,
+             const std::string &prefix, const std::string &postfix);
 
 private:
   std::ifstream file;
